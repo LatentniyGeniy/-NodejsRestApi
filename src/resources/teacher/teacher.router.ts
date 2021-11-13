@@ -1,15 +1,15 @@
-const { StatusCodes } = require('http-status-codes');
-const router = require('express').Router();
+import { StatusCodes } from 'http-status-codes';
+import { Request, Response, Router } from 'express';
 
-const Teacher = require('./teacher.model.js');
-const Exam = require('../exam/exam.model');
-const TeacherService = require('./teacher.service.js');
-const catchErrors = require('../../common/catchErrors');
+import Teacher from './teacher.model';
+import Exam from '../exam/exam.model';
+import TeacherService from './teacher.service';
+import catchErrors from '../../common/catchErrors';
 
-
+const router = Router({ mergeParams: true });
 
 router.route('/').get(
-  catchErrors(async (req, res) => {
+  catchErrors(async (_req: Request, res: Response) => {
     const teachers = await TeacherService.getAll();
 
     res.json(teachers.map(Teacher.toResponse));
@@ -17,7 +17,7 @@ router.route('/').get(
 );
 
 router.route('/').post(
-  catchErrors(async (req, res) => {
+  catchErrors(async (req: Request, res: Response) => {
     const { lastName, firstName, degree } = req.body;
 
     const teacher = await TeacherService.createTeacher({ lastName, firstName, degree });
@@ -33,10 +33,10 @@ router.route('/').post(
 );
 
 router.route('/:id').get(
-  catchErrors(async (req, res) => {
+  catchErrors(async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const teacher = await TeacherService.getById(id);
+    const teacher = await TeacherService.getById(id || '');
 
     if (teacher) {
       res.json(Teacher.toResponse(teacher));
@@ -49,11 +49,11 @@ router.route('/:id').get(
 );
 
 router.route('/:id').put(
-  catchErrors(async (req, res) => {
+  catchErrors(async (req: Request, res: Response) => {
     const { id } = req.params;
     const { lastName, firstName, degree } = req.body;
 
-    const teacher = await TeacherService.updateById({ id, lastName, firstName, degree });
+    const teacher = await TeacherService.updateById({ id: id || '', lastName, firstName, degree });
 
     if (teacher) {
       res.status(StatusCodes.OK).json(Teacher.toResponse(teacher));
@@ -66,10 +66,10 @@ router.route('/:id').put(
 );
 
 router.route('/:id').delete(
-  catchErrors(async (req, res) => {
+  catchErrors(async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const teacher = await TeacherService.deleteById(id);
+    const teacher = await TeacherService.deleteById(id || '');
 
     if (!teacher) {
       return res
@@ -83,11 +83,11 @@ router.route('/:id').delete(
   })
 );
 
-router.route('/:teacherID/exams').get(
-  catchErrors(async (req, res) => {
-    const  {teacherID}  = req.params;
+router.route('/:teacherId/exams').get(
+  catchErrors(async (req: Request, res: Response) => {
+    const  {teacherId}  = req.params;
 
-    const exam = await TeacherService.getExamsByTeacherId(teacherID);
+    const exam = await TeacherService.getExamsByTeacherId(teacherId || '');
 
     if (exam) {
       res.json(exam.map(Exam.toResponse));
