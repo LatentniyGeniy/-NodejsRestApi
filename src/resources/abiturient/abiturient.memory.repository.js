@@ -20,6 +20,7 @@ const deleteById = async (id) => {
   if (abiturientPosition === -1) return null;
 
   const abiturientDeletable = Aditurients[abiturientPosition];
+
   Aditurients.splice(abiturientPosition, 1);
   return abiturientDeletable;
 };
@@ -36,8 +37,9 @@ const updateById = async ({ id, lastname, firstname, numCertificate }) => {
   return newAbiturient;
 };
 
+
 module.exports = {
-  Users: Aditurients,
+  Aditurients,
   getAll,
   getById,
   createAbiturient,
