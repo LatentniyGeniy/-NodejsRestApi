@@ -3,8 +3,8 @@ const { v4: uuid } = require('uuid');
 class Exam {
   constructor({
                 id = uuid(),
-                abiturientID = 'Maxim',
-                teacherID = 'Kalinin',
+                abiturientID = '1234',
+                teacherID = '6476',
                 date = '28.12.2021',
                 score = 9
               } = {}) {
