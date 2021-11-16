@@ -99,4 +99,4 @@ router.route('/:teacherId/exams').get(
   })
 );
 
-module.exports = router;
+export default router;

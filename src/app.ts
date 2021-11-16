@@ -1,8 +1,8 @@
 import express from 'express';
 
-const StudentsRouter = require('./resources/student/student.router')
-const ExamsRouter = require('./resources/exam/exam.router');
-const TeacherRouter = require('./resources/teacher/teacher.router');
+import StudentsRouter from './resources/student/student.router';
+import ExamsRouter  from './resources/exam/exam.router';
+import TeacherRouter  from'./resources/teacher/teacher.router';
 
 const app = express();
 
