@@ -1,18 +1,27 @@
 {
-  "name": "rest-service-ts",
+  "name": "rs-rest-service-starter",
   "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": ""
   },
-  "type": "commonjs",
-  "description": "REST service",
+  "description": "REST service starter for RS School",
   "main": "src/server.ts",
   "scripts": {
-    "start": "nodemon src/server.ts",
-    "lint": "eslint --ext .js,.ts --fix src/"
+    "start": "cross-env NODE_ENV=development nodemon src/server.ts -L",
+    "start:prod": "cross-env NODE_ENV=production node build/server.js",
+    "build": "tsc -p .",
+    "lint": "eslint --ext .js,.ts --fix src/",
+    "typeorm": "ts-node --files -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/common/ormconfig.ts",
+    "migration:run": "npm run typeorm migration:run",
+    "migration:revert": "npm run typeorm migration:revert",
+    "typeorm-seeding": "ts-node ./node_modules/typeorm-seeding/dist/cli.js --configName src/common/ormconfig.ts",
+    "seed:config": "npm run typeorm-seeding config",
+    "seed:run": "npm run typeorm-seeding seed"
   },
   "keywords": [
+    "rs",
+    "school",
     "rest",
     "node",
     "express",
@@ -40,16 +49,21 @@
     ]
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cross-env": "7.0.3",
+    "docdash": "^1.2.0",
     "dotenv": "9.0.0",
     "express": "4.17.1",
     "express-async-handler": "^1.1.4",
+    "express-validator": "^6.11.1",
     "http-status-codes": "^2.1.4",
     "morgan": "^1.10.0",
+    "pg": "^8.6.0",
     "swagger-ui-express": "4.1.6",
+    "typeorm": "^0.2.34",
     "uuid": "8.3.2",
     "winston": "^3.3.3",
-    "lint": "^0.7.0"
+    "yamljs": "0.3.0"
   },
   "devDependencies": {
     "@microsoft/tsdoc": "^0.13.2",

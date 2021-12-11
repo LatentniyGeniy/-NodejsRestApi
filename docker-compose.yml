@@ -1,13 +1,12 @@
 version: '3'
-
 services:
   node:
     container_name: node_container
     build: .
     volumes:
-      - ./src:/app/src
-      - ./nodemon.json:/app/nodemon.json
-      - ./logs:/app/logs
+      - ./src:/home/node/app/src
+      - ./nodemon.json:/home/node/app/nodemon.json
+      - ./logs:/home/node/app/logs
     ports:
       - ${PORT}:${PORT}
     depends_on:
@@ -16,7 +15,7 @@ services:
       - PORT=${PORT}
     restart: always
     networks:
-      - my_app
+      - app-bridge
 
   postgres:
     container_name: postgres_container
@@ -24,34 +23,36 @@ services:
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     restart: always
     networks:
-      - my_app
+      - app-bridge
 
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
       - ${PGADMIN_PORT}:80
     volumes:
       - pgadmin:/var/lib/pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     depends_on:
       - postgres
     networks:
-      - my_app
+      - app-bridge
 
 networks:
-  my_app:
+  app-bridge:
     driver: bridge
 
 volumes:
-  postgres:
+  pgdata:
   pgadmin:
