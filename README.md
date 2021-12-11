@@ -50,3 +50,17 @@ Rebuild images & start containers:
 - PostgreSQL
 - pgAdmin
 - Express
+
+## **Migrations**
+
+Running migrations:
+
+```
+$ npm run migration:run
+```
+
+Revert migration:
+
+```
+$ npm run migration:revert
+```
