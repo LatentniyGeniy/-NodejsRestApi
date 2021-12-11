@@ -14,4 +14,4 @@ const server = async () => {
   process.on('unhandledRejection', unhandledRejection());
 };
 
-server()
+server();
