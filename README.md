@@ -1,10 +1,11 @@
-# Basic-nodejs-mitso
+# REST service
 
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
 - Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package
   manager.
+- Docker - [Download & Install Docker](https://www.docker.com/products/docker-desktop).
 
 ## Downloading
 
@@ -24,20 +25,42 @@ npm install
 npm start
 ```
 
-## Development
+## Or Running via docker
 
-If you're using VSCode, you can get a better developer experience from integration with
-[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and
-[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
-
-### Auto-fix and format
+Run in terminal:
 
 ```
-npm run lint
+ docker-compose up
 ```
 
-### Debugging in VSCode
+If you want to stop, press the keyboard shortcut first **Ctrl+C**, then enter in the terminal:
 
-Press <kbd>F5</kbd> to debug.
+```
+ docker-compose down
+```
 
-For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+Rebuild images & start containers:
+
+```
+ docker compose up --build
+```
+
+Сonnected services:
+
+- PostgreSQL
+- pgAdmin
+- Express
+
+## **Migrations**
+
+Running migrations:
+
+```
+$ npm run migration:run
+```
+
+Revert migration:
+
+```
+$ npm run migration:revert
+```
