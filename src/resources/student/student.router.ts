@@ -1,26 +1,23 @@
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response, Router } from 'express';
+import asyncHandler from 'express-async-handler';
 
-import Student from './student.model';
-import Exam from '../exam/exam.model';
+import Student from './student.entity';
 import studentsService from './student.service';
-import catchErrors from '../../common/catchErrors';
+import Exam from '../exam/exam.entity';
 
 const router = Router({ mergeParams: true });
 
 router.route('/').get(
-  catchErrors(async (_req: Request, res: Response) => {
+  asyncHandler(async (_req: Request, res: Response) => {
     const students = await studentsService.getAll();
-
-    res.json(students.map(Student.toResponse));
+    res.status(StatusCodes.OK).json(students.map(Student.toResponse));
   })
 );
 
 router.route('/').post(
-  catchErrors(async (req: Request, res: Response) => {
-    const { lastName, firstName, numCertificate } = req.body;
-
-    const student = await studentsService.createStudent({ lastName, firstName, numCertificate });
+  asyncHandler(async (req: Request, res: Response) => {
+    const student = await studentsService.createStudent(req.body);
 
     if (student) {
       res.status(StatusCodes.CREATED).json(Student.toResponse(student));
@@ -33,10 +30,10 @@ router.route('/').post(
 );
 
 router.route('/:id').get(
-  catchErrors(async (req: Request, res: Response) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const student = await studentsService.getById(id || "");
+    const student = await studentsService.getById(id!);
 
     if (student) {
       res.json(Student.toResponse(student));
@@ -49,11 +46,10 @@ router.route('/:id').get(
 );
 
 router.route('/:id').put(
-  catchErrors(async (req: Request, res: Response) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { lastName, firstName, numCertificate } = req.body;
 
-    const student = await studentsService.updateById({ id: id || "", lastName, firstName, numCertificate });
+    const student = await studentsService.updateById( id!,  req.body);
 
     if (student) {
       res.status(StatusCodes.OK).json(Student.toResponse(student));
@@ -66,28 +62,27 @@ router.route('/:id').put(
 );
 
 router.route('/:id').delete(
-  catchErrors(async (req: Request, res: Response) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const student = await studentsService.deleteById(id || '');
+    const student = await studentsService.deleteById(id!);
 
     if (!student) {
-      return res
+      res
         .status(StatusCodes.NOT_FOUND)
         .json({ code: 'STUDENT_NOT_FOUND', msg: 'Student not found' });
     }
-
-    return res
+     res
       .status(StatusCodes.NO_CONTENT)
       .json({ code: 'STUDENT_DELETED', msg: 'The student has been deleted' });
   })
 );
 
 router.route('/:studentId/exams').get(
-  catchErrors(async (req: Request, res: Response) => {
+  asyncHandler(async (req: Request, res: Response) => {
     const { studentId } = req.params;
 
-    const exam = await studentsService.getExamsByStudentId(studentId || '');
+    const exam = await studentsService.getExamsByStudentId(studentId!);
 
     if (exam) {
       res.json(exam.map(Exam.toResponse));
