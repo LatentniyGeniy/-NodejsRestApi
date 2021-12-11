@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "1a10117a-c6ab-4af6-818a-a93063a9ae7e",
+		"name": "Task2-Rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EXAM",
+			"item": [
+				{
+					"name": "GET EXAMS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/exams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"exams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET EXAM BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/exams/9f0e0a39-a9e0-4f8b-b412-75c7cfaaf090",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"exams",
+								"9f0e0a39-a9e0-4f8b-b412-75c7cfaaf090"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE EXAM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"studentId\": \"e712a24c-fa8e-45c2-b93f-a546b868d963\",\r\n    \"teacherId\": \"c3a71f1f-e2e8-4314-b952-d4e0816f153a\",\r\n    \"date\": \"05.01.2022\",\r\n    \"score\": 12\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/exams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"exams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE EXAM",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/exams/9f0e0a39-a9e0-4f8b-b412-75c7cfaaf090",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"exams",
+								"9f0e0a39-a9e0-4f8b-b412-75c7cfaaf090"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE EXAM",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\": \"4\",\r\n    \"teacherId\": \"5\",\r\n    \"date\": \"05.02.2022\",\r\n    \"score\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/exams/bb1573e1-5d70-4011-a037-37e8a1a0a63c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"exams",
+								"bb1573e1-5d70-4011-a037-37e8a1a0a63c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET TEACHER BY EXAM_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/exams/0e2292bd-6231-4ec4-8e48-4ee9d068c2bb/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"exams",
+								"0e2292bd-6231-4ec4-8e48-4ee9d068c2bb",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ABITURIENT",
+			"item": [
+				{
+					"name": "GET ABITURIENTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ABITURIENT BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/students/e712a24c-fa8e-45c2-b93f-a546b868d963",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"students",
+								"e712a24c-fa8e-45c2-b93f-a546b868d963"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE ABITURIENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"lastName\": \"Bruyok\",\r\n        \"firstName\": \"Ilya\",\r\n        \"numCertificate\": 948352\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/students/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"students",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ABITURIENT",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/students/a67c313d-43c3-4a98-b1ae-7eea2fe2d618",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"students",
+								"a67c313d-43c3-4a98-b1ae-7eea2fe2d618"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ABITURIENT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"lastName\": \"Bruyok\",\r\n        \"firstName\": \"Ilya\",\r\n        \"numCertificate\": 66666\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/students/e9cbec66-b6d3-410e-8ce9-fdeed001f724",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"students",
+								"e9cbec66-b6d3-410e-8ce9-fdeed001f724"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET EXAMS BY ABITURIENT_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/students/e712a24c-fa8e-45c2-b93f-a546b868d963/exams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"students",
+								"e712a24c-fa8e-45c2-b93f-a546b868d963",
+								"exams"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEACHER",
+			"item": [
+				{
+					"name": "GET TEACHERS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET TEACHERBY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/teachers/c7b77164-3cc2-4f83-991e-063c1b74c3f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"teachers",
+								"c7b77164-3cc2-4f83-991e-063c1b74c3f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE TEACHER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"dede2a3c-b43b-435d-9d29-24ea4db88deb\",\r\n        \"lastName\": \"Bruyok\",\r\n        \"firstName\": \"Ilya\",\r\n        \"numCertificate\": 948352\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE TEACHER",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE TEACHER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"lastName\": \"Bruyok\",\r\n        \"firstName\": \"Ilya\",\r\n        \"degree\": \"professor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/teachers/c7b77164-3cc2-4f83-991e-063c1b74c3f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"teachers",
+								"c7b77164-3cc2-4f83-991e-063c1b74c3f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET EXAMS BY TEACHER_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/teachers/dede2a3c-b43b-435d-9d29-24ea4db88deb/exams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"teachers",
+								"dede2a3c-b43b-435d-9d29-24ea4db88deb",
+								"exams"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "ExID",
+			"value": "ExID"
+		}
+	]
+}
