@@ -11,7 +11,7 @@ const router = Router({ mergeParams: true });
 router.route('/').get(
   asyncHandler(async (_req: Request, res: Response) => {
     const exams = await examsService.getAll();
-    res.status(StatusCodes.OK).json(exams.map(Exam.toResponse));
+    res.status(StatusCodes.OK).json(exams.map((ex)=>Exam.toResponse(ex)));
   }),
 );
 
