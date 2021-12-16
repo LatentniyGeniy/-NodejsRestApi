@@ -11,7 +11,7 @@ const config = {
   NODE_ENV,
   PORT: PORT ?? 4000,
   MONGO_CONNECTION_STRING,
-  JWT_SECRET_KEY,
+  JWT_SECRET_KEY: JWT_SECRET_KEY || 'secret-key',
   AUTH_MODE: AUTH_MODE === 'true',
 };
 

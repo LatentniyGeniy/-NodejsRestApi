@@ -3,7 +3,12 @@ import express, { Request, Response, NextFunction } from 'express';
 import StudentsRouter from './resources/student/student.router';
 import ExamsRouter  from './resources/exam/exam.router';
 import TeacherRouter  from'./resources/teacher/teacher.router';
+import AuthRouter  from'./resources/auth/auth.router';
+import AdminsRouter  from'./resources/admin/admin.router';
+
+
 import { successHttpLogger, errorHttpLogger, errorHandler } from './middlewares';
+import { auth } from './middlewares/auth';
 
 const app = express();
 
@@ -20,9 +25,11 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
 app.use(successHttpLogger);
 app.use(errorHttpLogger);
 
-app.use('/students', StudentsRouter);
-app.use('/exams', ExamsRouter);
-app.use('/teachers', TeacherRouter);
+app.use('/auth', AuthRouter)
+app.use('/admins', auth, AdminsRouter);
+app.use('/students', auth, StudentsRouter);
+app.use('/exams', auth, ExamsRouter);
+app.use('/teachers', auth, TeacherRouter);
 
 app.use(errorHandler)
 
